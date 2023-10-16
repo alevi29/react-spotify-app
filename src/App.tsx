@@ -10,7 +10,7 @@ function App() {
 
   return (
     <Fragment>
-      <img src="./public/iconSpotify.png" id="main-logo" />
+      <img src="iconSpotify.png" id="main-logo" />
 
       <div id="title">
         STATIFY
