@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
+// figure out how to hide this 
 const CLIENT_ID = "c45b05fac304496bb06b1d4595557bfc";
 const CLIENT_SECRET = "a4d832ecf25f4cee85d9daa40e7e3d73";
 
