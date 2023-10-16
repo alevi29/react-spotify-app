@@ -1,6 +1,6 @@
 {
   "name": "react-spotify-app",
-  "private": false,
+  "private": true,
   "version": "0.0.0",
   "homepage": "https://alevi29.github.io/react-spotify-app",
   "type": "module",
