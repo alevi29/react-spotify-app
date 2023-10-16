@@ -1,0 +1,40 @@
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+
+/* main elements */
+
+/* class elements */
+
+.link {
+    margin-right: 16px;
+    float: right;
+}
+
+/* id elements */
+
+#title {
+    padding: 8px;
+    font-size: 48px;
+    font-family: "Pacifico";
+    margin-bottom: 78px;
+}
+
+#main-text {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+#main-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 5%;
+}
+
+#links {
+    font-size: 64px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    list-style-type: none;
+}
