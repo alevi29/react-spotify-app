@@ -1,8 +1,8 @@
-import ListGroup from "./components/listGroup";
 import CreateLinks from "./components/createLinks";
 import SearchBar from "./components/searchBar";
+import SearchCard from "./components/searchCard";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, InputGroup, FormControl, Button, Row, Card } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import './App.css';
 import { Fragment } from "react";
 
@@ -22,8 +22,8 @@ function App() {
 
       <SearchBar />
 
-      <Container>
-
+      <Container className="search-card">
+        <SearchCard />
       </Container>
 
       <CreateLinks />

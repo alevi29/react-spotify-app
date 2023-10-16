@@ -1,8 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Pacifico);
+@import url(https://fonts.googleapis.com/css?family=Amatic+SC);
 
 /* main elements */
 
 /* class elements */
+
+.search-card {
+    font-family: 'Amatic SC';
+}
 
 .link {
     margin-right: 16px;
@@ -14,7 +19,7 @@
 #title {
     padding: 8px;
     font-size: 48px;
-    font-family: "Pacifico";
+    font-family: 'Pacifico';
     margin-bottom: 78px;
 }
 
