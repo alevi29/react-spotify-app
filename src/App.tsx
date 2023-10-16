@@ -4,7 +4,11 @@ import SearchCard from "./components/searchCard";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 import './App.css';
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
+
+const CLIENT_ID = "c45b05fac304496bb06b1d4595557bfc";
+const CLIENT_SECRET = "a4d832ecf25f4cee85d9daa40e7e3d73";
+
 
 function App() {
 

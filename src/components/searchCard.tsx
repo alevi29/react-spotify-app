@@ -4,9 +4,9 @@ function SearchCard() {
     return (
         <Row className="mx-2 row row-cols-4">
             <Card className="text-light bg-dark mx-4">
-                <Card.Img src="#" />
+                <Card.Img src="#"></Card.Img>
                 <Card.Body>
-                    <Card.Title>Album Name Here</Card.Title>
+                    <Card.Title>Album Names Here</Card.Title>
                 </Card.Body>
             </Card>
         </Row>

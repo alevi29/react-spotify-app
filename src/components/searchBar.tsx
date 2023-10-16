@@ -4,8 +4,57 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
+const CLIENT_ID = "c45b05fac304496bb06b1d4595557bfc";
+const CLIENT_SECRET = "a4d832ecf25f4cee85d9daa40e7e3d73";
+
 function SearchBar() {
+    const [accessToken, setAccessToken] = useState("");
+
+    useEffect(() => {
+        // API access token
+
+        // Spotify exclusive param formatting
+        var param = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
+        }
+
+        // fetch result and store into json file (output to console to debug, should display access token)
+        fetch('https://accounts.spotify.com/api/token', param)
+            .then(result => result.json())
+            .then(data => {
+                console.log(data.access_token);
+                setAccessToken(data.access_token);
+            })
+    }, []);
+
+    console.log("Access token: " + accessToken);
     const [searchInput, setSearchInput] = useState("");
+
+    async function search() {
+        console.log("Searching for " + searchInput);
+
+        // GET request: get artist ID
+        var artistParam = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + accessToken
+            }
+        }
+
+        var artistID = await fetch('https://api.spotify.com/v1/search?q=' + searchInput
+            + '&type=artist', artistParam)
+            .then(response => response.json())
+            .then(data => console.log(data));
+
+
+
+        // GET request: use artist ID 
+    }
 
     return (
         <Container>
@@ -20,7 +69,7 @@ function SearchBar() {
                     type="input"
                     onKeyPress={event => {
                         if (event.key == "Enter") {
-                            alert("Enter Pressed!")
+                            search();
                         }
                     }}
                     onChange={event => setSearchInput(event.target.value)}
