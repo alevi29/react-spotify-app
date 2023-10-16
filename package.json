@@ -1,12 +1,12 @@
 {
   "name": "react-spotify-app",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "homepage": "https://alevi29.github.io/react-spotify-app",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
