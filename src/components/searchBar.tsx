@@ -5,11 +5,12 @@ import { Container, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
 // figure out how to hide this 
-const CLIENT_ID = "c45b05fac304496bb06b1d4595557bfc";
-const CLIENT_SECRET = "a4d832ecf25f4cee85d9daa40e7e3d73";
+const CLIENT_ID = 'c45b05fac304496bb06b1d4595557bfc';
+const CLIENT_SECRET = 'a4d832ecf25f4cee85d9daa40e7e3d73';
 
 function SearchBar() {
     const [accessToken, setAccessToken] = useState("");
+    const [searchInput, setSearchInput] = useState("");
 
     useEffect(() => {
         // API access token
@@ -33,7 +34,6 @@ function SearchBar() {
     }, []);
 
     console.log("Access token: " + accessToken);
-    const [searchInput, setSearchInput] = useState("");
 
     async function search() {
         console.log("Searching for " + searchInput);
