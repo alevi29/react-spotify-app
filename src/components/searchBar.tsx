@@ -77,7 +77,7 @@ function SearchBar() {
                         }
                     }}
                     onChange={event => {
-                        setSearchInput(event.target.value)
+                        setSearchInput(event.target.value);
                     }}
                 />
             </InputGroup>
@@ -105,7 +105,7 @@ function SearchBar() {
                         artists.map((artist, i) => {
                             if (artist.images.length != 0) {
                                 return (
-                                    <Card className="text-light bg-dark my-4 p-2">
+                                    <Card key={i} className="text-light bg-dark my-4 p-2">
                                         <Card.Img
                                             id="card-image"
                                             className="rounded-circle shadow-med"
