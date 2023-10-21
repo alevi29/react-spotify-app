@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, InputGroup, FormControl, Button, ButtonGroup, Row, Card } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
@@ -75,6 +76,7 @@ function SearchBar() {
                 </Button>
 
                 <FormControl
+                    value={searchInput}
                     placeholder="What are you looking for?"
                     type="input"
                     onKeyPress={event => {
@@ -86,6 +88,11 @@ function SearchBar() {
                         setSearchInput(event.target.value);
                     }}
                 />
+
+                <Button variant='light' onClick={() => setSearchInput("")}>
+                    <FontAwesomeIcon icon={faX} />
+                </Button>
+
             </InputGroup>
             <ButtonGroup className="mx-auto mb-5" size="lg">
                 <Button
@@ -109,7 +116,7 @@ function SearchBar() {
                 <Row className="row justify-content-center row-cols-5 gap-3">
                     {
                         artists.map((artist, i) => {
-                            if (artist.images.length != 0) {
+                            if (artist.images.length != 0 && searchInput != "") {
                                 return (
                                     <Card key={i} className="text-light bg-dark my-4 p-2">
                                         <Card.Img
