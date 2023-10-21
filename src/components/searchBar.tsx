@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { faX } from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, InputGroup, FormControl, Button, ButtonGroup, Row, Card } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
@@ -90,7 +90,7 @@ function SearchBar() {
                 />
 
                 <Button variant='light' onClick={() => setSearchInput("")}>
-                    <FontAwesomeIcon icon={faX} />
+                    <FontAwesomeIcon icon={faXmark} />
                 </Button>
 
             </InputGroup>
