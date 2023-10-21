@@ -34,6 +34,12 @@ function SearchBar() {
             })
     }, []);
 
+    useEffect(() => {
+        if (searchInput != "") {
+            search();
+        }
+    }, [searchInput])
+
     async function search() {
         console.log("Searching for " + searchInput);
 
