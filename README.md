@@ -1,5 +1,5 @@
 (WIP)
-A web app built to learn React and TypeScript:
+A web app built to learn React and calling APIs
 
 App which queries data from the Spotify API to return formatted data and statistics about artists/songs
 currently accessible at https://alevi29.github.io/react-spotify-app/
