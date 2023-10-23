@@ -14,6 +14,8 @@ function SearchBar() {
     const [accessToken, setAccessToken] = useState("");
     const [searchInput, setSearchInput] = useState("");
     const [artists, setArtists] = useState<any[]>([]);
+    const [tracks, setTracks] = useState<any[]>([]);
+    const [searchType, setSearchType] = useState(true);
 
     useEffect(() => {
         // API access token
@@ -36,12 +38,11 @@ function SearchBar() {
     }, []);
 
     useEffect(() => {
-        if (searchInput != "") {
-            search();
-        }
-    }, [searchInput])
+        search();
+    }, [searchInput, searchType])
 
     async function search() {
+        if (searchInput == "") return;
         console.log("Searching for " + searchInput);
 
         // GET request: get artist ID
@@ -53,16 +54,14 @@ function SearchBar() {
             }
         }
 
-        // retrieve list of artists from API and store in variable artists
-        var artistItems = await fetch('https://api.spotify.com/v1/search?q=' + searchInput
-            + '&type=artist&limit=50', artistParam)
+        // retrieve list of artists or tracks depending on search type
+        var searchItems = await fetch('https://api.spotify.com/v1/search?q=' + searchInput
+            + '&type=artist,track' + '&limit=50', artistParam)
             .then(response => response.json())
             .then(data => {
                 setArtists(data.artists.items);
-                return data.artists.items;
+                setTracks(data.tracks.items);
             });
-
-        console.log(artistItems);
 
         // GET request: use artist ID 
     }
@@ -96,43 +95,65 @@ function SearchBar() {
             </InputGroup>
             <ButtonGroup className="mx-auto mb-5" size="lg">
                 <Button
+                    onClick={() => {
+                        setSearchType(true);
+                    }}
                     id="button"
-                    variant="outline-light">
-                    All
-                </Button>
-                <Button
-                    id="button"
-                    variant="outline-light">
+                    variant={searchType == true ? "light" : "outline-light"}>
                     Artists
                 </Button>
                 <Button
+                    onClick={() => {
+                        setSearchType(false);
+                    }}
                     id="button"
-                    variant="outline-light">
-                    Songs
+                    variant={searchType == false ? "light" : "outline-light"}>
+                    Tracks
                 </Button>
             </ButtonGroup>
 
             <div id="search-cards">
                 <Row className="row justify-content-center row-cols-5 gap-3">
                     {
-                        artists.map((artist, i) => {
-                            if (artist.images.length != 0 && searchInput != "") {
-                                return (
-                                    <Card key={i} className="text-light bg-dark my-4 p-2">
-                                        <Card.Img
-                                            id="card-image"
-                                            className="rounded-circle shadow-med"
-                                            src={artist.images[0].url}
-                                            alt={"Picture of " + artist.name}
-                                        />
-                                        <Card.Body>
-                                            <Card.Title
-                                                className="">{artist.name}</Card.Title>
-                                        </Card.Body>
-                                    </Card>
-                                )
-                            }
-                        })}
+                        searchType ?
+                            artists.map((result, i) => {
+                                if (searchType && searchInput != "" && result.images.length != 0) {
+                                    return (
+                                        <Card key={i} className="text-light bg-dark my-4 p-2">
+                                            <Card.Img
+                                                id="card-image"
+                                                className="rounded-circle shadow-med"
+                                                src={result.images[0].url}
+                                                alt={"Picture of " + result.name}
+                                            />
+                                            <Card.Body>
+                                                <Card.Title
+                                                    className="">{result.name}</Card.Title>
+                                            </Card.Body>
+                                        </Card>
+                                    );
+                                }
+                            }) :
+                            tracks.map((result, i) => {
+                                if (!searchType && searchInput != "" && result.album.images.length != 0) {
+                                    return (
+                                        <Card key={i} className="text-light bg-dark my-4 p-2">
+                                            <Card.Img
+                                                id="card-image"
+                                                className="rounded-circle shadow-med"
+                                                src={result.album.images[0].url}
+                                                alt={"Album art for " + result.album.name}
+                                            />
+                                            <Card.Body>
+                                                <Card.Title
+                                                    className="">{result.name}</Card.Title>
+                                            </Card.Body>
+                                        </Card>
+                                    );
+                                }
+
+                            })
+                    }
                 </Row>
             </div>
         </Container>
