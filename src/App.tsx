@@ -1,5 +1,5 @@
 import CreateLinks from "./components/createLinks";
-import SearchBar from "./components/searchBar";
+import SearchBar from "./components/search";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 import './App.css';
