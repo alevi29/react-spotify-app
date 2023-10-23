@@ -29,7 +29,7 @@ function SearchBar() {
             body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
         }
 
-        // fetch result and store into json file (output to console to debug, should display access token)
+        // fetch and set access token
         fetch('https://accounts.spotify.com/api/token', param)
             .then(result => result.json())
             .then(data => {
@@ -38,6 +38,7 @@ function SearchBar() {
     }, []);
 
     useEffect(() => {
+        // run search whenever search type or input changes
         search();
     }, [searchInput, searchType])
 
@@ -54,20 +55,20 @@ function SearchBar() {
             }
         }
 
-        // retrieve list of artists or tracks depending on search type
-        var searchItems = await fetch('https://api.spotify.com/v1/search?q=' + searchInput
+        // retrieve list of artists and tracks
+        await fetch('https://api.spotify.com/v1/search?q=' + searchInput
             + '&type=artist,track' + '&limit=50', artistParam)
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 setArtists(data.artists.items);
                 setTracks(data.tracks.items);
             });
-
-        // GET request: use artist ID 
     }
 
     return (
         <Container>
+            {/* search bar */}
             <InputGroup size="lg" className="mx-auto w-50 mb-4">
 
                 <Button variant='light' onClick={() => search()}>
@@ -93,6 +94,8 @@ function SearchBar() {
                 </Button>
 
             </InputGroup>
+
+            {/* buttons to filter search results */}
             <ButtonGroup className="mx-auto mb-5" size="lg">
                 <Button
                     onClick={() => {
@@ -112,6 +115,7 @@ function SearchBar() {
                 </Button>
             </ButtonGroup>
 
+            {/* cards displayed according to search filters */}
             <div id="search-cards">
                 <Row className="row justify-content-center row-cols-5 gap-3">
                     {
@@ -119,13 +123,15 @@ function SearchBar() {
                             artists.map((result, i) => {
                                 if (searchType && searchInput != "" && result.images.length != 0) {
                                     return (
-                                        <Card key={i} className="text-light bg-dark my-4 p-2">
-                                            <Card.Img
-                                                id="card-image"
-                                                className="rounded-circle shadow-med"
-                                                src={result.images[0].url}
-                                                alt={"Picture of " + result.name}
-                                            />
+                                        <Card className="text-light bg-dark my-4 p-2">
+                                            <a key={i} href={result.external_urls.spotify}>
+                                                <Card.Img
+                                                    id="card-image"
+                                                    className="rounded-circle shadow-med"
+                                                    src={result.images[0].url}
+                                                    alt={"Picture of " + result.name}
+                                                />
+                                            </a>
                                             <Card.Body>
                                                 <Card.Title
                                                     className="">{result.name}</Card.Title>
@@ -137,13 +143,15 @@ function SearchBar() {
                             tracks.map((result, i) => {
                                 if (!searchType && searchInput != "" && result.album.images.length != 0) {
                                     return (
-                                        <Card key={i} className="text-light bg-dark my-4 p-2">
-                                            <Card.Img
-                                                id="card-image"
-                                                className="rounded-circle shadow-med"
-                                                src={result.album.images[0].url}
-                                                alt={"Album art for " + result.album.name}
-                                            />
+                                        <Card className="text-light bg-dark my-4 p-2">
+                                            <a key={i} href={result.external_urls.spotify}>
+                                                <Card.Img
+                                                    id="card-image"
+                                                    className="rounded-circle shadow-med"
+                                                    src={result.album.images[0].url}
+                                                    alt={"Album art for " + result.album.name}
+                                                />
+                                            </a>
                                             <Card.Body>
                                                 <Card.Title
                                                     className="">{result.name}</Card.Title>
