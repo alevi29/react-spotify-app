@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 import './App.css';
 import { Fragment, useEffect, useState } from "react";
+import Home from "./components/home";
 
 function App() {
 
@@ -15,17 +16,7 @@ function App() {
         STATIFY
       </div>
 
-      <div id="main-text">
-        Begin by typing the name of an artist, song, or album!
-      </div>
-
-      <SearchBar />
-
-      {/*
-      <Container className="search-card">
-        <SearchCard />
-      </Container>
-  */}
+      <Home />
 
       <CreateLinks />
     </Fragment>
