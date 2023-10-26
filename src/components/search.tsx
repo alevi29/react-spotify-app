@@ -69,7 +69,7 @@ function SearchBar() {
     return (
         <Container>
             {/* search bar */}
-            <InputGroup size="lg" className="mx-auto w-50 mb-4">
+            <InputGroup size="lg" className="mx-auto w-75 mb-4">
 
                 <Button variant='light' onClick={() => search()}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
