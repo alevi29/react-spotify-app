@@ -9,3 +9,4 @@ TODO:
 - reconfigure home page components
 - design info pages for artist/song display
 - set logo and text to link to home page
+- reconfigure display for website on mobile devices
