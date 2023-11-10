@@ -154,7 +154,7 @@ function SearchBar() {
                                             </a>
                                             <Card.Body>
                                                 <Card.Title
-                                                    className="">{result.name}</Card.Title>
+                                                    className="">{result.name + " - " + result.artists[0].name}</Card.Title>
                                             </Card.Body>
                                         </Card>
                                     );

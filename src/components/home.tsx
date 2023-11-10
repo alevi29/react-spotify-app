@@ -6,7 +6,7 @@ function Home() {
     return (
         <Fragment>
             <div id="main-text">
-                Begin by typing the name of an artist, song, or album!
+                Begin by typing the name of an artist or song!
             </div>
             <SearchBar />
         </Fragment>
