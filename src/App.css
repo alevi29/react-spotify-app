@@ -31,6 +31,15 @@
     margin-bottom: 78px;
 }
 
+#title #title-link {
+    color:aliceblue;
+    text-decoration: none;
+}
+
+#title #title-link:hover {
+    color: cornflowerblue;
+}
+
 #main-text {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 24px;
